@@ -1,0 +1,11 @@
+# Leftovers.
+.idea
+__pycache__
+build
+builds
+dist
+extracffy.spec
+
+# Tests are done in private.
+private_tests
+private_tests.py
