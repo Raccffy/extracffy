@@ -52,6 +52,15 @@ class Test_A_ResourcePackExtraction(unittest.TestCase):
 
         extracffy.close()
 
+    def test_06_dir_obfs_extraction(self):
+        extracffy = Extracffy("tests/ps_20240404_8ea2917_dir_obfs.zip")
+        extracffy_idx = extracffy.cd_read()
+
+        for idx in extracffy_idx:
+            extracffy.extract(idx)
+
+        extracffy.close()
+
 
 if __name__ == '__main__':
     unittest.main()
