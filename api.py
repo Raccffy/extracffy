@@ -309,10 +309,8 @@ class Extracffy:
 
         if idx.compression_method == 0:
             if crc32_check:
-                crc32 = hex(zlib.crc32(buffer))[2:]
-                if crc32 != idx.crc32:
-                    raise ValueError(f'CRC32 hash mismatch at file "{str(idx)}": '
-                                     f'expected "{idx.crc32}", got "{crc32}".')
+                self.compute_and_compare_crc32(idx, buffer)
+
             return buffer
         elif idx.compression_method == 8:
             deflate = zlib.decompressobj(-15)
@@ -322,10 +320,23 @@ class Extracffy:
             except zlib.error as e:
                 raise RuntimeError(f'Cannot decompress file "{str(idx)}": {e}')
 
+            if crc32_check:
+                self.compute_and_compare_crc32(idx, decompressed)
+
             return decompressed
         else:
             raise NotImplementedError('Unknown compression method '
                                       f'"{idx.compression_method}".')
+
+    def compute_and_compare_crc32(self,
+                                  idx: CDIndex,
+                                  buffer: bytes
+                                  ):
+            crc32 = hex(zlib.crc32(buffer))[2:]
+
+            if crc32 != idx.crc32:
+                raise ValueError(f'CRC32 hash mismatch at file "{str(idx)}": '
+                                 f'expected "{idx.crc32}", got "{crc32}".')
 
     def close(self):
         self.resources.close()
