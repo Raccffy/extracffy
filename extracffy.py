@@ -4,7 +4,7 @@ Extracffy's CLI.
 
 import argparse
 
-from zipfile import ZipFile
+import zipfile
 from api import Extracffy
 
 __author__ = "Raccffy"
@@ -24,9 +24,18 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose",
                         action="store_true",
                         help="Enable debug messages.")
+    parser.add_argument("-c", "--compression-level",
+                        type=int,
+                        default=5,
+                        choices=range(0, 10),
+                        help="Sets compression level for output resource pack. Default: 5")
     parser.add_argument("--crc32-check",
                         action="store_true",
                         help="Enable CRC32 check.")
+    parser.add_argument("--mismatched-hash-action",
+                        choices=("err", "warn",),
+                        default="err",
+                        help='Select action when hash check fails. Default: "err"')
     parser.add_argument("--version",
                         action="version",
                         help="Show program's version and exit.",
@@ -37,10 +46,32 @@ if __name__ == "__main__":
     extracffy = Extracffy(args.resources)
     extracffy_idx = extracffy.cd_read()
 
-    with ZipFile(args.output, "w") as f:
+    with zipfile.ZipFile(args.output, "w") as f:
         for idx in extracffy_idx:
             if args.verbose:
                 print(f"{str(idx)}")
-            f.writestr(str(idx), extracffy.extract(idx, args.crc32_check))
+
+            current_file_name = str(idx)
+
+            try:
+                data = extracffy.extract(idx, args.crc32_check)
+            except ValueError as e:
+                if args.invalid_crc_action == "err":
+                    raise RuntimeError("Hash check failed.")
+                elif args.invalid_crc_action == "warn":
+                    print(e)
+                    data = extracffy.extract(idx, False)
+                else:
+                    raise RuntimeError("Unknown hash check fail action.")
+
+            if args.compression_level == 0:
+                f.writestr(current_file_name,
+                           data,
+                           compress_type=zipfile.ZIP_STORED)
+            else:
+                f.writestr(current_file_name,
+                           data,
+                           compress_type=zipfile.ZIP_DEFLATED,
+                           compresslevel=args.compression_level)
 
     print("Success!")
