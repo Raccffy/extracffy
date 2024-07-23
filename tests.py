@@ -72,13 +72,13 @@ class Test_B_OggDeobfs(unittest.TestCase):
 
         extracffy.close()
 
-    def test_02_deobfs(self):
-        """
-        Currently there's no Vorbis autocorrection in Extracffy. Ogg files
-        are not readable due to corrupted codec magic number, which leads
-        to the "End of file" error.
-        """
+    """
+    Currently there's no Vorbis autocorrection in Extracffy. Ogg files
+    are not readable due to corrupted codec magic number, which leads
+    to the "End of file" error.
+    """
 
+    def test_02_deobfs(self):
         extracffy = Extracffy("tests/ps_20240404_8ea2917_ogg_obfs.zip")
         extracffy_idx = extracffy.cd_read()
 
