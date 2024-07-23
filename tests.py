@@ -1,5 +1,5 @@
 """
-Extracffy's tests.
+Extracffy's API tests.
 """
 
 import unittest
