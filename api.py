@@ -198,7 +198,11 @@ class Extracffy:
             extra_field = self.resources.read(idx[11]).decode(encoding="ANSI")
             comment = self.resources.read(idx[12]).decode(encoding="ANSI")
 
-            idx_processed = self.CDIndex(idx, cd_idx_position, filename, extra_field, comment)
+            idx_processed = self.CDIndex(idx,
+                                         cd_idx_position,
+                                         filename,
+                                         extra_field,
+                                         comment)
 
             """
             Directories cannot keep any data.
@@ -330,8 +334,7 @@ class Extracffy:
 
     def compute_and_compare_crc32(self,
                                   idx: CDIndex,
-                                  buffer: bytes
-                                  ):
+                                  buffer: bytes):
             crc32 = hex(zlib.crc32(buffer))[2:]
 
             if crc32 != idx.crc32:
