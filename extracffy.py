@@ -8,7 +8,7 @@ import zipfile
 from api import Extracffy
 
 __author__ = "Raccffy"
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 
 
 if __name__ == "__main__":
