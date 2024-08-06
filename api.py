@@ -290,9 +290,8 @@ class Extracffy:
 
             """
             Some obfuscated resource packs can contain broken offsets. This is
-            great, isn't it? But wait, we have a (temporary) solution. We're
-            just need to search for magic number until we hit the end of the
-            archive.
+            great, isn't it? But wait, we have a solution. We're just need to
+            search for magic number until we hit the end of the archive.
             """
 
             magic = b"PK\x03\x04"
