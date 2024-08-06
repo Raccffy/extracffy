@@ -6,7 +6,7 @@ import struct
 import zlib
 
 __author__ = "Raccffy"
-__version__ = "1.0.0"
+__version__ = "1.1.1"
 
 
 class Extracffy:
