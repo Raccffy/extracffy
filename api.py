@@ -166,7 +166,7 @@ class Extracffy:
 
         while True:
             buffer = self.resources.read(1)
-            if buffer == b"P":
+            if buffer == magic[0:1]:
                 self.resources.seek(self.resources.tell() - 1)
                 buffer = self.resources.read(4)
                 if buffer == magic:
@@ -239,7 +239,7 @@ class Extracffy:
 
         while True:
             buffer = self.resources.read(1)
-            if buffer == b"P":
+            if buffer == magic[0:1]:
                 self.resources.seek(self.resources.tell() - 1)
                 buffer = self.resources.read(4)
                 if buffer == magic:
@@ -303,7 +303,7 @@ class Extracffy:
                 if self.resources.tell() < 4:
                     self.resources.seek(4)
 
-                if self.resources.read(1) == b"P":
+                if self.resources.read(1) == magic[0:1]:
                     self.resources.seek(self.resources.tell() - 1)
                     if self.resources.read(4) == magic:
                         break
