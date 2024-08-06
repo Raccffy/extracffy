@@ -234,7 +234,22 @@ class Extracffy:
         some side data, so it should be ignored.
         """
 
+        magic = b"PK\x03\x04"
         self.resources.seek(idx.relative_offset_local_header)
+
+        while True:
+            buffer = self.resources.read(1)
+            if buffer == b"P":
+                self.resources.seek(self.resources.tell() - 1)
+                buffer = self.resources.read(4)
+                if buffer == magic:
+                    self.resources.seek(self.resources.tell() - 4)
+                    break
+                else:
+                    self.resources.seek(self.resources.tell() - 3)
+            elif len(buffer) == 0:
+                self.close()
+                raise RuntimeError("Local file header is missing.")
 
         buffer = self.resources.read(30)
 
