@@ -136,7 +136,7 @@ class Extracffy:
                     self.resources.seek(pos)
             offset += 1
 
-            # First four bytes are allocated for ZIP magic.
+            # First four bytes are allocated for global ZIP magic.
             if offset > search_limit or pos_offset < 4:
                 self.close()
                 raise RuntimeError("End of central directory record is "
