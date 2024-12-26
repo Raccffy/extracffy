@@ -6,6 +6,7 @@ Extracffy is a reference decompiler module for reading and extracting obfuscated
 
 - Extracts any obfuscated resources' archive;
 - Autocorrection of obfuscated files appearing as directories;
+- Deobfuscates corrupted PNG files;
 - Written on Python from scratch, following [ZIP file specification](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT).
 
 ## Installation
