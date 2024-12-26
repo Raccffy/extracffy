@@ -6,6 +6,7 @@ import argparse
 
 import zipfile
 from api import Extracffy
+from png_fixer import png_recalculate_crc32
 
 __author__ = "Raccffy"
 __version__ = "1.1.1"
@@ -32,6 +33,9 @@ if __name__ == "__main__":
     parser.add_argument("--crc32-check",
                         action="store_true",
                         help="Enable CRC32 check.")
+    parser.add_argument("--disable-png-checksum-recalculation",
+                        action="store_true",
+                        help="Disable PNG CRC32 checksum recalculation.")
     parser.add_argument("--mismatched-hash-action",
                         choices=("err", "warn",),
                         default="err",
@@ -63,6 +67,17 @@ if __name__ == "__main__":
                     data = extracffy.extract(idx, False)
                 else:
                     raise RuntimeError("Unknown hash check fail action.")
+
+            """
+            Try to recalculate PNG image's CRC32 checksum. Minecraft does not
+            care about texture integrity!
+            """
+
+            if not args.disable_png_checksum_recalculation:
+                try:
+                    data = png_recalculate_crc32(data)
+                except ValueError:
+                    pass
 
             if args.compression_level == 0:
                 f.writestr(current_file_name,
