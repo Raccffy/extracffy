@@ -22,9 +22,9 @@ Install Python 3.8 or greater, download source code, extract and run "extracffy.
 ## Usage
 
 ```
-usage: extracffy [-h] -o OUTPUT [-v] [-c {0,1,2,3,4,5,6,7,8,9}] [--crc32-check] [--mismatched-hash-action {err,warn}]
-                 [--version]
-                 resources
+usage: extracffy [-h] -o OUTPUT [-v] [-c {0,1,2,3,4,5,6,7,8,9}] [--crc32-check]
+                 [--disable-png-checksum-recalculation]
+                 [--mismatched-hash-action {err,warn}] [--version] resources
 
 Reference decompiler module for reading and extracting obfuscated Minecraft resource packs.
 
@@ -39,6 +39,8 @@ optional arguments:
   -c {0,1,2,3,4,5,6,7,8,9}, --compression-level {0,1,2,3,4,5,6,7,8,9}
                         Sets compression level for output resource pack. Default: 5
   --crc32-check         Enable CRC32 check.
+  --disable-png-checksum-recalculation
+                        Disable PNG CRC32 checksum recalculation.
   --mismatched-hash-action {err,warn}
                         Select action when hash check fails. Default: "err"
   --version             Show program's version and exit.
