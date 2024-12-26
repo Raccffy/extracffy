@@ -9,7 +9,7 @@ from api import Extracffy
 from png_fixer import png_recalculate_crc32
 
 __author__ = "Raccffy"
-__version__ = "1.1.1"
+__version__ = "1.2.0"
 
 
 if __name__ == "__main__":
