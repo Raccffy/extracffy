@@ -1,6 +1,6 @@
 # Extracffy
 
-Extracffy is a reference decompiler module for reading and extracting obfuscated Minecraft resource packs.
+Extracffy is a extraction tool for obfuscated Minecraft resource packs.
 
 ## Features
 
