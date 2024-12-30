@@ -1,6 +1,6 @@
 # Extracffy
 
-Extracffy is a extraction tool for obfuscated Minecraft resource packs.
+Extracffy is an extraction tool for obfuscated Minecraft resource packs.
 
 ## Features
 
