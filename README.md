@@ -26,7 +26,7 @@ usage: extracffy [-h] -o OUTPUT [-v] [-c {0,1,2,3,4,5,6,7,8,9}] [--crc32-check]
                  [--disable-png-checksum-recalculation]
                  [--mismatched-hash-action {err,warn}] [--version] resources
 
-Reference decompiler module for reading and extracting obfuscated Minecraft resource packs.
+Extracts obfuscated Minecraft resource packs.
 
 positional arguments:
   resources             Minecraft resource pack.
