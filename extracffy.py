@@ -1,5 +1,5 @@
 """
-Extracffy's CLI.
+Extraction tool for obfuscated Minecraft resource packs.
 """
 
 import argparse
@@ -14,8 +14,7 @@ __version__ = "1.2.0"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="extracffy",
-                                     description="Reference decompiler module for reading and extracting "
-                                                 "obfuscated Minecraft resource packs.")
+                                     description="Extracts obfuscated Minecraft resource packs.")
 
     parser.add_argument("resources",
                         help="Minecraft resource pack.")
