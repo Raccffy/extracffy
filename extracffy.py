@@ -3,13 +3,11 @@ Extraction tool for obfuscated Minecraft resource packs.
 """
 
 import argparse
-
 import zipfile
+
+from __version__ import __version__
 from api import Extracffy
 from png_fixer import png_recalculate_crc32
-
-__author__ = "Raccffy"
-__version__ = "1.2.0"
 
 
 if __name__ == "__main__":
