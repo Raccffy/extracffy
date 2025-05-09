@@ -2,6 +2,9 @@
 
 Extracffy is an extraction tool for obfuscated Minecraft resource packs.
 
+> [!WARNING]
+> Development of the program has been **discontinued** due to abandonment of the game. Feel free to fork!
+
 ## Features
 
 - Extracts any obfuscated resources' archive.
